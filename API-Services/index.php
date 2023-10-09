@@ -23,6 +23,10 @@
 					else if(strtoupper(Route::Info()["Module"])=="USERACCOUNT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/User_Account/UserAccount.Controller.php", 
 				                       Route::Info()["Method"], $Data);
+					}
+					else if(strtoupper(Route::Info()["Module"])=="ACTIVITY"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Activity/Activity.Controller.php", 
+				                       Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header

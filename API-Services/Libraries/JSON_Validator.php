@@ -21,8 +21,8 @@ class JSON {
 	 	                        "Status" => "Error=> The '{$key}' property should have its value assigned in accordance with the data type '{$property['Type']}' as specified by the Schema.");  
 					 }  	
               }
-		     
-			 // Check nested  arrays data
+		    
+			 // Check nested arrays data
 			if($property['Type']== "array" && $dataType =="array")
 			     {  for($Cnt=0; $Cnt < Count($JSON_Data[$key]); $Cnt++)
 					 { $itemType = gettype($JSON_Data[$key][$Cnt]);
@@ -45,11 +45,7 @@ class JSON {
 					   if(isset($property['Properties']['MaxLength']) && $JSON_Data[$key][$Cnt] < $property['Properties']['MaxLength'])
 						{return Array("Valid" => false, 
 										"Status" => "Error=> The element value of the '{$key}' attribute must adhere to the schema by being assigned a value that exceeds {$property['Properties']['MaxLength']}.");
-						}
-						if(isset($property['Properties']['Text']) && $property['Properties']['Text'] === true && !preg_match('/^[a-zA-Z]+$/', $JSON_Data[$key][$Cnt])) {
-							return Array("Valid" => false,
-								"Status" => "Error=> The '{$key}' property's value must consist of letters only as defined by the schema.");
-						}
+						}				
 					  }
 				   }
             // Check minimum and maximum values
@@ -75,16 +71,24 @@ class JSON {
 				 return Array("Valid" => false, 
 	 	                      "Status" => "Error=> The '{$key}' property's value must confirm to the Email format as defined by the schema.");
             }
+			if(isset($property['Text']) && $property['Text'] === 'letter'){
+				$pattern = '/^[A-Za-z\s]+$/';
+				if(!preg_match($pattern, $JSON_Data[$key])){
+					return Array("Valid" => false,
+								"Status" => "Error => The value for {$key} property should consist of letters only as define bt the schema.");
+				}
+			}
             // Check nested objects or arrays
             if ($property['Type'] === 'object' && isset($property['Properties'])) {
                 if ( !Self::ValidateSchema($JSON_Data[$key], $property)) {return false;}
 				        for($Cnt=0; $Cnt < Count($property['Required']); $Cnt++)
-					       {   if (!isset($JSON_Data[$key][$property['Required'][$Cnt]])) {
+					       {
+							if (!isset($JSON_Data[$key][$property['Required'][$Cnt]])) {
 					            return Array("Valid" => false, 
 	 	                                     "Status" => "Error=> The value for the '{$property['Required'][$Cnt]}' property should be set in accordance with the schema.");
 		                           // Required property missing
 			                   }
-				           }
+				           }			
 			 }
 			 
         } elseif (isset($Json_Schema['Required'])) {
@@ -99,7 +103,7 @@ class JSON {
 				
         }
     }
-	 
+
      return Array("Valid" => true, 
 	 	          "Status" => "The data is valid based on the required format of the JSON Schema.");
 		

@@ -6,9 +6,9 @@
 		 $jsonSchema = '{   "Type": "object",
 							"Properties": { "Student_ID": { "Type": "string" },
 							                "Fullname": {"Type": "object",
-														 "Properties": { "Firstname" : { "Type": "string", "Text": true },
-														 				 "Middlename": { "Type": "string", "Text": true },
-																		 "Lastname": { "Type": "string" },
+														 "Properties": { "Firstname" : { "Type": "string"},
+														 				 "Middlename": { "Type": "string" },
+																		 "Lastname": { "Type": "string"},
 																		 "Suffix": { "Type": "string" }
 																	   }, "Required" : ["Firstname", "Lastname"]
 														},

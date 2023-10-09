@@ -61,6 +61,47 @@
 		  }
  
 //=================================================================================================================================================================================================	 
+static function GetAllStudent($Record)
+		  {   
+			echo '{"Status" : "Request was successfully processed...",
+				"Record" :{ "Student_ID": "123", 
+							"Fullname": {
+								"Firstname": "Gehan",
+								"Middlename": "Lumantas",
+								"Lastname": "Resalute",
+								"Suffix": ""
+							},
+							"Contact_No": "09953924073",
+							"Email": "gehan@gmail.com",
+							"Profile": "gehan.png"
+						},
+						{ "Student_ID": "456", 
+							"Fullname": {
+									"Firstname": "Junji",
+									"Middlename": "Ambot",
+									"Lastname": "Pocong",
+									"Suffix": ""
+							},
+								"Contact_No": "099999999",
+								"Email": "junji@gmail.com",
+								"Profile": "junji.png"
+							},
+							{ "Student_ID": "789", 
+							"Fullname": {
+									"Firstname": "Sheen Lee",
+									"Middlename": "Ambot",
+									"Lastname": "Edis",
+									"Suffix": ""
+							},
+								"Contact_No": "09999999991",
+								"Email": "sheenleepc@gmail.com",
+								"Profile": "sheenleepc.png"
+							},
+						
+				}';	  
+		  }
+ 
+//=================================================================================================================================================================================================	 
 
 			  
 	}
