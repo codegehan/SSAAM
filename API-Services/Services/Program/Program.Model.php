@@ -15,9 +15,10 @@ class Program
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
 			echo '{ "Status" : "New Program Added.",
-			   "Record" :{"program_code": 1, 
-						"program_description": "BSCS", 
-						"college_code": "1"}}';
+					"Record" :{"program_code": 1, 
+								"program_description": "BSCS", 
+								"college_code": "1"}
+					}';
 
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
@@ -28,7 +29,7 @@ class Program
 	static function SearchProgram($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(StudentAccount_Schema::SearchRecord(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::SearchProgram(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
