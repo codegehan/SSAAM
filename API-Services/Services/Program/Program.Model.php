@@ -33,7 +33,7 @@ class Program
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			if ($Record->SearchKey == "123") {
+			if ($Record->SearchKey == "BSCS") {
 				echo '{"Status" : "Request was successfully processed...",
 					   "Record" :{"program_code": 2, 
 						"program_description": "BSCS", 
