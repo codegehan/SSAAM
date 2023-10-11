@@ -1,45 +1,40 @@
 <?php
 
 require_once("..\..\Libraries\JSON_Validator.php");
-require_once("Program_Schema.php");
+require_once("College_Schema.php");
 
-class Program
+class College
 {
 	//=================================================================================================================================================================================================	 
 
-	static function UpdateProgram($Record)
+	static function UpdateCollege($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::UpdateProgram(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(College_Schema::UpdateCollege(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			echo '{ "Status" : "New Program Added.",
-			   "Record" :{"program_code": 1, 
-						"program_description": "BSCS", 
-						"college_code": "1"}}';
-
+			echo '{ "Status" : "New College Added.",
+			   "Record" :{"college_code": " ", "college_description": "CCS"}}';
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
 	}
 
 	//=================================================================================================================================================================================================	 
-	static function SearchProgram($Record)
+	static function SearchCollege($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(StudentAccount_Schema::SearchRecord(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(College_Schema::SearchCollege(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			if ($Record->SearchKey == "123") {
+			if ($Record->SearchKey == "CCS") {
+
 				echo '{"Status" : "Request was successfully processed...",
-					   "Record" :{"program_code": 2, 
-						"program_description": "BSCS", 
-						"college_description": "CCS"}}';
-						
+					   "Record" :{"college_code": 1, "college_description": "CCS"}}';
 			} else {
-				echo '{"Status" : "Error=> The Program Description ' . $Record->SearchKey . ' was not found in the database"}';
+				echo '{"Status" : "Error=> The College Description ' . $Record->SearchKey . ' was not found in the database"}';
 			}
 		} else {
 			echo '{ "JSON Schema Status" : "' . $Validate_JSON["Status"] . '"}';

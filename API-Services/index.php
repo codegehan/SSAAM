@@ -30,6 +30,15 @@
 					}else if(strtoupper(Route::Info()["Module"])=="ATTACHMENT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Attachment/Attachment.Controller.php", 
 				                       Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="PROGRAM"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Program/Program.Controller.php", 
+				                       Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="COLLEGE"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Program/College.Controller.php", 
+				                       Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="MAJOR"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Program/Major.Controller.php", 
+				                       Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header
