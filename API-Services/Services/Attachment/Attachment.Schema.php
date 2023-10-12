@@ -4,15 +4,17 @@
 	 static function InsertRecord()
 	 {
 		 $jsonSchema = '{   "Type": "object",
-							"Properties": { 
-                                            "Student_ID": {"Type": "string"},
-                                            "Attachment_Type": {"Type": "string"},
-                                            "File_Name": {"Type": "string"},
-                                            "File_Data": {"Type": "string"},
-                                            "Date_Submitted": {"Type": "string"},
-                                            "File_Status": {"Type": "string"}
-		 								  },
-							 "Required": ["Student_ID", "Attachment_type", "File_Name", "Date_Submitted", "File_Status"]
+							          "Properties": { 
+                          "student_id": {"Type": "string"},
+                          "attachment_description": { "Type": "object",
+                                                      "Properties": { "file_type": {"Type": "string"},
+                                                                      "date_submitted": {"Type": "string"},
+                                                                      "status": {"Type": "string"}
+                                                                    }, "Required": ["file_type", "date_submitted", "status"]
+                                                    },
+                          "attachment_data": {"Type": "string"}
+		 								},
+							 "Required": ["student_id", "attachment_description", "attachment_data"]
 						}';					
 		return $jsonSchema;
     }
@@ -21,10 +23,11 @@
     {
         $jsonSchema = '{   "Type": "object",
                             "Properties": { 
-                                            "Attachment_No": {"Type": "integer"},
-                                            "File_Status": {"Type": "string"}
+                                            "attachment_no": {"Type": "integer"},
+                                            "file_status": {"Type": "string"},
+                                            "date_validated": {"Type": "string"}
                                            },
-                            "Required": ["Attachment_No", "File_Status"]
+                            "Required": ["attachment_no", "file_Status", "date_validated"]
                         }';					
         return $jsonSchema;
     }
