@@ -1,46 +1,50 @@
 <?php
 
 require_once("..\..\Libraries\JSON_Validator.php");
-require_once("Program_Schema.php");
+require_once("Major_Schema.php");
 
-class Program
+class Major
 {
 	//=================================================================================================================================================================================================	 
 
-	static function UpdateProgram($Record)
+	static function UpdateMajor($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::UpdateProgram(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Major_Schema::UpdateMajor(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			echo '{ "Status" : "New Program Added.",
-					"Record" :{"program_code": 1, 
+			echo '{ "Status" : "New College Added.",
+					"Record" :{
+								"major_code": 1, 
 								"program_description": "BSCS", 
-								"college_code": "1"}
+								"major_description": "Software eng."
+								}
 					}';
-
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
 	}
 
 	//=================================================================================================================================================================================================	 
-	static function SearchProgram($Record)
+	static function SearchMajor($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::SearchProgram(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Major_Schema::SearchMajor(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			if ($Record->SearchKey == "BSCS") {
+			if ($Record->SearchKey == "Software eng.") {
+
 				echo '{"Status" : "Request was successfully processed...",
-					   "Record" :{"program_code": 2, 
-						"program_description": "BSCS", 
-						"college_description": "CCS"}}';
-						
+					   "Record" :{
+									"major_code": 1, 
+									"program_description": "BSCS", 
+									"major_description": "Software eng."
+								}
+						}';
 			} else {
-				echo '{"Status" : "Error=> The Program Description ' . $Record->SearchKey . ' was not found in the database"}';
+				echo '{"Status" : "Error=> The Major Description ' . $Record->SearchKey . ' was not found in the database"}';
 			}
 		} else {
 			echo '{ "JSON Schema Status" : "' . $Validate_JSON["Status"] . '"}';
