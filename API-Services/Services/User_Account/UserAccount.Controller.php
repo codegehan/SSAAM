@@ -13,6 +13,7 @@
 	     if(strtoupper($ObjData->Request)=="SHAKEHAND")		{UserAccount::Shakehand($ObjData->Record);}
 		 else if(strtoupper($ObjData->Request)=="LOGIN")	{UserAccount::Login($ObjData->Record);}
 		 else if(strtoupper($ObjData->Request)=="UPDATE")	{UserAccount::Update($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="FETCH")	{UserAccount::Fetch($ObjData->Record);}
 		
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 		 

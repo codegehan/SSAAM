@@ -4,10 +4,10 @@
 	 static function Shakehand()
 	 {
 		 $jsonSchema = '{   "Type": "object",
-							"Properties": { "User_ID": { "Type": "string" },
-							                "Password": { "Type": "string" } 
+							"Properties": { "student_id": { "Type": "string" },
+							                "password": { "Type": "string" } 
 										  },
-							 "Required": ["User_ID", "Password"]
+							 "Required": ["student_id", "password"]
 						}';
 						
 		return $jsonSchema;
@@ -17,11 +17,11 @@
   
      static function Login()
 	 {  $jsonSchema = '{   "Type": "object",
-							"Properties": { "User_ID": { "Type": "string" },
-							                "Password": { "Type": "string" },
-                                            "OTP": { "Type": "string" }											
+							"Properties": { "student_id": { "Type": "string" },
+							                "password": { "Type": "string" },
+                                            "otp": { "Type": "string" }											
 										  },
-							 "Required": ["User_ID", "Password", "OTP"]
+							 "Required": ["student_id", "password", "otp"]
 						}';
 		 return $jsonSchema;
 	 }
@@ -29,12 +29,11 @@
   
 	static function Update()
 		{  $jsonSchema = '{   "Type": "object",
-								"Properties": { "User_ID": { "Type": "string" },
-												"Password": { "Type": "string" },
-												"Account_Privilege": { "Type": "string" }
-																							
+								"Properties": { "student_id": {"Type": "string"},
+												"password": {"Type": "string"},
+												"account_privilege": {"Type": "string"}										
 											},
-								"Required": ["User_ID", "Password", "Account_Privilege"]
+								"Required": ["student_id","password","account_privilege"]
 							}';
 			return $jsonSchema;
 		}

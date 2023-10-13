@@ -29,7 +29,10 @@
 				                       Route::Info()["Method"], $Data);
 					}else if(strtoupper(Route::Info()["Module"])=="ATTACHMENT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Attachment/Attachment.Controller.php", 
-				                       Route::Info()["Method"], $Data);
+				                       Route::Info()["Method"], $Data);			   
+					}else if(strtoupper(Route::Info()["Module"])=="SANCTION"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Sanction/Sanction.Controller.php", 
+									Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header

@@ -1,7 +1,7 @@
 <?php
 
 require_once("..\..\Libraries\JSON_Validator.php");
-require_once("Program_Schema.php");
+require_once("Program.Schema.php");
 
 class Program
 {
