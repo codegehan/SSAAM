@@ -1,9 +1,9 @@
 <?php
-  
     require_once ("..\..\Libraries\JSON_Validator.php");
     require_once ("..\..\Libraries\Application.Config.php");
     require_once ("..\..\Libraries\PdoMysql.php");
 	require_once ("UserAccount.Schema.php");
+	require_once ("..\..\Assets\mail.php");
 	
 	class UserAccount{
 //=================================================================================================================================================================================================	 
@@ -18,9 +18,19 @@
 				$code = rand(100000, 999999);
 				$convertedCode = strval($code);
 				$status = "active";
-				$expiration = date('Y-m-d H:i:s', strtotime('+5 minutes'));
-				
+				$expiration = date('Y-m-d H:i:s', strtotime('+2 minutes'));
 
+				$recipient = "gehanatomost@gmail.com";
+				$subject = "OTP Code";
+				$message = Email::SendEmail($convertedCode);
+				// $message = "Your OTP Code is: " . $convertedCode;
+				$header = "From: robertmayo.elumba@gmail.com";
+
+				// $header.= "Reply To: " . $recipient;1
+				$header.= "MIME-Version : 1.0\r\n";
+				$header.= "Content-Type: text/html; charset=ISO-8850-1\r\n";
+				mail($recipient,$subject,$message,$header);
+			
 				$data = array(
 					"student_id" => $student_id,
 					"password" => $password,
@@ -62,6 +72,10 @@
 				$password = $Record->password;
 				$otpcode = $Record->otp;
 
+				// $email = "gehanatomost@gmail.com";
+				// $mailer = new OTPMailer();
+				// $mailer->sendOTPviaEmail("gehanatomost@gmail.com", "12345");
+
 				$data = array(
 					"student_id" => $studentid,
 					"password" => $password,
@@ -73,7 +87,7 @@
 				try{
 					$NewRecord = json_encode($data);
 					$Procedure = "Call login_user(?)";
-					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $Record);
+					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
 					if(trim($Result) != "")
 					{
 						$Result = json_decode($Result);
@@ -119,8 +133,8 @@
 				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
 				if(trim($Result) != "")
 				{
-					$Result = json_decode($Result);
-					$Result = $Result[0]->Status;
+					$Result = json_decode($Result, true);
+					// $Result = $Result[0]->Status;
 					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
 											"Result" => $Result
 										), JSON_UNESCAPED_UNICODE);
