@@ -73,7 +73,7 @@
 				try{
 					$NewRecord = json_encode($data);
 					$Procedure = "Call login_user(?)";
-					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $Record);
 					if(trim($Result) != "")
 					{
 						$Result = json_decode($Result);
@@ -139,17 +139,17 @@
 			try{
 				// HEREEEEEEEEEEEEEEEEEEE
 				$Procedure = "Call get_account()";
-				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $Record);
 				if(trim($Result) != "")
 				{
 					$Result = json_decode($Result);
-					$Result = $Result[0]->Status;
 					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
 											"Result" => $Result
 										), JSON_UNESCAPED_UNICODE);
 				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
 			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
 	
-		}}
+		}
+	}
 	
 	?>

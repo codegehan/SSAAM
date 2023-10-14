@@ -15,25 +15,13 @@
 											"Contact_No": { "Type": "string", "MinLength": "11", "MaxLength": "13" },
 											"Email": { "Type": "string", "Format": "email" },
 											"Profile": {"Type": "string"}
-		 								  },
+										 },
 							 "Required": ["Student_ID", "Fullname", "Contact", "Email", "Profile"]
 						}';
 						
 		return $jsonSchema;
     }
   //--------------------------------------------------------------------------------------------------------
-  
-  
-     static function SearchRecord()
-	 {   $jsonSchema = '{   "Type": "object",
-							"Properties": { "SearchKey": { "Type": "string" }
-							              },
-						    "Required": ["SearchKey"]
-						}';
-		 return $jsonSchema;
-	 }
-  //--------------------------------------------------------------------------------------------------------
-  
  }
 
 ?>
