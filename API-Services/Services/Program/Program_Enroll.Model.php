@@ -3,14 +3,14 @@
 require_once("..\..\Libraries\JSON_Validator.php");
 require_once("Program_Schema.php");
 
-class Program
+class Program_Enroll
 {
 	//=================================================================================================================================================================================================	 
 
-	static function UpdateProgram($Record)
+	static function UpdateProgramEnroll($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::UpdateProgram(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Enroll_Schema::UpdateProgramEnroll(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
@@ -25,10 +25,10 @@ class Program
 	}
 
 	//=================================================================================================================================================================================================	 
-	static function SearchProgram($Record)
+	static function SearchProgramEnroll($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Schema::SearchProgram(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Enroll_Schema::SearchProgramEnroll(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
