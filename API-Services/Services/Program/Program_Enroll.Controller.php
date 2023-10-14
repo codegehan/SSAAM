@@ -10,8 +10,8 @@
 	 
 	if(strtoupper($Method)=="POST")
 	   { 
-	     if(strtoupper($ObjData->Request)=="SHAKEHAND")		{Program_Enroll::UpdateProgramEnroll($ObjData->Record);}
-		 else if(strtoupper($ObjData->Request)=="LOGIN")	{Program_Enroll::SearchProgramEnroll($ObjData->Record);}
+	     if(strtoupper($ObjData->Request)=="UPDATE")		{Program_Enroll::UpdateProgramEnroll($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="SEARCH")	{Program_Enroll::SearchProgramEnroll($ObjData->Record);}
 		  
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 		 

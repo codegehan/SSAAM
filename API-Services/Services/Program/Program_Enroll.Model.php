@@ -2,6 +2,8 @@
 
 require_once("..\..\Libraries\JSON_Validator.php");
 require_once("Program_Enroll_Schema.php");
+require_once("../../Libraries/db_connect.php");
+require_once("../../Libraries/pdoMysql.php");
 
 class Program_Enroll
 {
@@ -14,14 +16,45 @@ class Program_Enroll
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			echo '{ "Status" : "New Program Added.",
-			   "Record" :{"program_code": 1, 
-						"program_description": "BSCS", 
-						"college_code": "1"}}';
+
+			$studentID = $Record->student_id;
+			$programCode = $Record->program_code;
+			$majorCode = $Record->major_code;
+			$others = $Record->others;
+
+			$data = array(
+				"student_id" => $studentID,
+				"program_code" => $programCode,
+				"major_code" => $majorCode,
+				"others" => $others
+			);
+
+			set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+				throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+			});
+			try {
+				$NewRecord = json_encode($data);
+				$Procedure = "Call update_program_enroll(?)";
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+				if (trim($Result) != "") {
+					$Result = json_decode($Result, true);
+					// $Result = $Result[0]->Status;
+					echo json_encode(array(
+						"Status" => "Requested service has been successfully processed.",
+						"Result" => $Result
+					), JSON_UNESCAPED_UNICODE);
+				} else {
+					echo json_encode(array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);
+				}
+			} catch (ErrorException $e) {
+				echo json_encode(array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);
+			}
+			//Dummy Record
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
 	}
+
 
 	//=================================================================================================================================================================================================	 
 	static function SearchProgramEnroll($Record)
@@ -31,16 +64,35 @@ class Program_Enroll
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
-			if ($Record->SearchKey == "123") {
-				echo '{"Status" : "Request was successfully processed...",
-					   "Record" :{"program_code": 2, 
-						"program_description": "BSCS", 
-						"college_description": "CCS"}}';
-			} else {
-				echo '{"Status" : "Error=> The Program Description ' . $Record->SearchKey . ' was not found in the database"}';
+			$studentID = $Record->_student_id;
+		
+			$data = array(
+				"_student_id" => $studentID
+			);
+
+			set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+				throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+			});
+			try {
+				$NewRecord = json_encode($data);
+				$Procedure = "Call search_program_enroll(?)";
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+				if (trim($Result) != "") {
+					$Result = json_decode($Result, true);
+					// $Result = $Result[0]->Status;
+					echo json_encode(array(
+						"Status" => "Requested service has been successfully processed.",
+						"Result" => $Result
+					), JSON_UNESCAPED_UNICODE);
+				} else {
+					echo json_encode(array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);
+				}
+			} catch (ErrorException $e) {
+				echo json_encode(array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);
 			}
+			//Dummy Record
 		} else {
-			echo '{ "JSON Schema Status" : "' . $Validate_JSON["Status"] . '"}';
+			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
 	}
 
