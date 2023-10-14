@@ -30,6 +30,9 @@
 					}else if(strtoupper(Route::Info()["Module"])=="ATTACHMENT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Attachment/Attachment.Controller.php", 
 				                       Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="PROGRAMENROLL"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Program/Program_Enroll.Controller.php", 
+				                       Route::Info()["Method"], $Data);				   
 					}else if(strtoupper(Route::Info()["Module"])=="PROGRAM"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Program/Program.Controller.php", 
 				                       Route::Info()["Method"], $Data);

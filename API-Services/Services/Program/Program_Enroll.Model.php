@@ -1,7 +1,7 @@
 <?php
 
 require_once("..\..\Libraries\JSON_Validator.php");
-require_once("Program_Schema.php");
+require_once("Program_Enroll_Schema.php");
 
 class Program_Enroll
 {
@@ -18,7 +18,6 @@ class Program_Enroll
 			   "Record" :{"program_code": 1, 
 						"program_description": "BSCS", 
 						"college_code": "1"}}';
-
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
@@ -37,7 +36,6 @@ class Program_Enroll
 					   "Record" :{"program_code": 2, 
 						"program_description": "BSCS", 
 						"college_description": "CCS"}}';
-						
 			} else {
 				echo '{"Status" : "Error=> The Program Description ' . $Record->SearchKey . ' was not found in the database"}';
 			}
