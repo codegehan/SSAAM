@@ -14,14 +14,19 @@
 			$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(StudentAccount_Schema::UpdateRecord(), true)); 
 			if($Validate_JSON["Valid"]===true){
 
-			$studentid = $Record->Student_ID;
-			$firstname = $Record->Fullname->Firstname;
-			$middlename = $Record->Fullname->Middlename;
-			$lastname = $Record->Fullname->Lastname;
-			$suffix = $Record->Fullname->Suffix;
-			$contactNo = $Record->Contact_No;
-			$email = $Record->Email;
-			$profileImage = $Record->Profile;
+			$studentid = $Record->student_id;
+			$firstname = $Record->fullname->firstname;
+			$middlename = $Record->fullname->middlename;
+			$lastname = $Record->fullname->lastname;
+			$suffix = $Record->fullname->suffix;
+			$sex = $Record->sex;
+			$course = $Record->program_enroll->college;
+			$program = $Record->program_enroll->program;
+			$major = $Record->program_enroll->major;
+			$others = $Record->program_enroll->other;
+			$contactNo = $Record->contact_no;
+			$email = $Record->email_address;
+			$profileImage = $Record->profile;
 			$createdDate = date('Y-m-d H:i:s');
 
 			$data = array(
@@ -31,6 +36,13 @@
 					"middlename" => $middlename,
 					"lastname" => $lastname,
 					"suffix" => $suffix
+				),
+				"sex" => $sex,
+				"program_enroll" => array (
+					"course" => $course,
+					"program" => $program,
+					"major" => $major,
+					"other" => $others
 				),
 				"contact_no" => $contactNo,
 				"email" => $email,

@@ -15,9 +15,19 @@
 			if($Validate_JSON["Valid"]===true){
                 set_error_handler(function ($errno,$errstr,$errfile,$errline){
                 throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+                
+                $studentid = $Record->student_id;
+                $attachmentDescription = $Record->attachment_description;
+                $file_data = $Record->attachment_data;
+
+                $data = array(
+                    "student_id" => $studentid,
+                    "attachment_description" => $attachmentDescription
+                );
+
                 try{
-                    $NewRecord = json_encode($Record);
-                    $Procedure = "Call attachment_insert(?)";
+                    $NewRecord = Array(json_encode($data), $file_data);
+                    $Procedure = "Call attachment_insert(?,?)";
                     $Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
                     if(trim($Result) != "")
                     {
