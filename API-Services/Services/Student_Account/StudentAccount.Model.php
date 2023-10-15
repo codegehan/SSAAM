@@ -27,7 +27,7 @@
 			$contactNo = $Record->contact_no;
 			$email = $Record->email_address;
 			$profileImage = $Record->profile;
-			$createdDate = date('Y-m-d H:i:s');
+			$updatedDate = date('Y-m-d H:i:s');
 
 			$data = array(
 				"student_id" => $studentid,
@@ -46,15 +46,14 @@
 				),
 				"contact_no" => $contactNo,
 				"email" => $email,
-				"profile" => $profileImage,
-				"created_date" => $createdDate
+				"updated_date" => $updatedDate
 			);
 
 			set_error_handler(function ($errno,$errstr,$errfile,$errline){
 			throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
 			try{
-				$NewRecord = json_encode($data);
-				$Procedure = "Call student_update(?)";
+				$NewRecord = Array(json_encode($data), $profileImage);
+				$Procedure = "Call student_update(?,?)";
 				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
 				if(trim($Result) != "")
 				{
