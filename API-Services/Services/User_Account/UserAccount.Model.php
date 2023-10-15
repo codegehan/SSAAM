@@ -24,9 +24,9 @@
 				$subject = "OTP Code";
 				$message = Email::SendEmail($convertedCode);
 				// $message = "Your OTP Code is: " . $convertedCode;
-				$header = "From: robertmayo.elumba@gmail.com";
+				$header = "From: resalutegehan@gmail.com\r\n";
 
-				// $header.= "Reply To: " . $recipient;1
+				$header.= "Reply To: " . $recipient . "\r\n";
 				$header.= "MIME-Version : 1.0\r\n";
 				$header.= "Content-Type: text/html; charset=ISO-8850-1\r\n";
 				mail($recipient,$subject,$message,$header);
@@ -164,6 +164,7 @@
 			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
 	
 		}
+//=================================================================================================================================================================================================	
 	}
 	
 	?>

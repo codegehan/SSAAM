@@ -74,6 +74,28 @@ static function FetchRecord($Record)
 				} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
 		  }
 //=================================================================================================================================================================================================	 		  
-	}
+		static function FetchId($Record)
+		{   
+			set_error_handler(function ($errno,$errstr,$errfile,$errline){
+			throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+			try{
+				$studentidd = $Record->student_id;
+				$data = array(
+					"student_id" => $studentidd
+				);
+				$NewRecord = json_encode($data);
+				$Procedure = "Call get_studentid(?)";
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+				if(trim($Result) != "")
+				{
+					$Result = json_decode($Result);
+					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
+											"Result" => $Result
+										), JSON_UNESCAPED_UNICODE);
+				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
+			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
+
+		}
+}
 	
 	?>
