@@ -49,7 +49,7 @@ class Program_Enroll
 			} catch (ErrorException $e) {
 				echo json_encode(array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);
 			}
-			//Dummy Record
+		
 		} else {
 			echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';
 		}
