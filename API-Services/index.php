@@ -23,8 +23,7 @@
 					else if(strtoupper(Route::Info()["Module"])=="USERACCOUNT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/User_Account/UserAccount.Controller.php", 
 				                       Route::Info()["Method"], $Data);
-					}
-					else if(strtoupper(Route::Info()["Module"])=="ACTIVITY"){
+					}else if(strtoupper(Route::Info()["Module"])=="ACTIVITY"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Activity/Activity.Controller.php", 
 				                       Route::Info()["Method"], $Data);
 					}else if(strtoupper(Route::Info()["Module"])=="ATTACHMENT"){
@@ -32,6 +31,9 @@
 				                       Route::Info()["Method"], $Data);			   
 					}else if(strtoupper(Route::Info()["Module"])=="SANCTION"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Sanction/Sanction.Controller.php", 
+									Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="COURSE"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Course/Course.Controller.php", 
 									Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   

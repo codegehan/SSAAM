@@ -1,6 +1,6 @@
 <?php
     
-     require_once ("Program.Model.php");
+     require_once ("Course.Model.php");
       
     $Method = strtoupper($_SERVER['REQUEST_METHOD']);
     $Data = file_get_contents('php://input');
@@ -10,9 +10,10 @@
 	 
 	if(strtoupper($Method)=="POST")
 	   { 
-	     if(strtoupper($ObjData->Request)=="UPDATE")		{Program::UpdateProgram($ObjData->Record);}
-		 else if(strtoupper($ObjData->Request)=="SEARCH")	{Program::SearchProgram($ObjData->Record);}
-		  
+	     if(strtoupper($ObjData->Request)=="UPDATECOLLEGE")		{Course::UpdateCollege($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="UPDATEPROGRAM")	{Course::UpdateProgram($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="UPDATEMAJOR")	{Course::UpdateMajor($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="GETREQUEST")	{Course::GetRequest($ObjData->Record);}
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 		 
 		 
