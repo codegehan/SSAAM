@@ -6,7 +6,7 @@ class Course_Schema
 	static function UpdateProgramEnroll()
 	{
 		$jsonSchema = '{ "Type":  "Object",
-						   "Properties":  {  "enrollment_info":  {  "Type":  "Object",
+						
 						   "Properties":  {  "student_id":  {  "Type":  "Int"  },
 						   "program_code":  {  "Type":  "Int"  },
 						   "major_code":  {  "Type":  "Int"  },
@@ -14,7 +14,6 @@ class Course_Schema
 
 						   "Required":["student_id","program_code","major_code","others",]},
 
-					   "Required":  ["enrollment_info"]
 	   }';
 
 		return $jsonSchema;
