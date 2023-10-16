@@ -12,7 +12,7 @@ class Course
 	static function UpdateProgramEnroll($Record)
 	{
 		// Validate the JSON data against the schema
-		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Program_Enroll_Schema::UpdateProgramEnroll(), true));
+		$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(Course_Schema::UpdateProgramEnroll(), true));
 
 		if ($Validate_JSON["Valid"] === true) {
 			//Dummy Record
