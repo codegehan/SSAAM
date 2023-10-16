@@ -1,8 +1,0 @@
-// To remote a github repository
-git remote add origin https://github.com/codegehan/SSAAM.git
-
-git commit -m "Description"
-git branch -M main
-git push -u origin main
-
-git clone https://github.com/codegehan/SSAAM.git

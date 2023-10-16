@@ -18,7 +18,7 @@
                 
                 $studentid = $Record->student_id;
                 $fileType = $Record->attachment_description->file_type;
-                $status = $Record->attachment_description->status;
+                $status = "pending";
                 $dateSubmitted = date("Y-m-d H:i:s");
                 $file_data = $Record->attachment_data;
 

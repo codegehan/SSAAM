@@ -11,8 +11,7 @@
 	if(strtoupper($Method)=="POST")
 	   { 
 	     if(strtoupper($ObjData->Request)=="UPDATE")		{Activity::UpdateRecord($ObjData->Record);}
-	     else if(strtoupper($ObjData->Request)=="SEARCH")		{Activity::SearchRecord($ObjData->Record);}
-	     else if(strtoupper($ObjData->Request)=="ALLACTIVITY")		{Activity::GetActivityRecord($ObjData->Record);}
+	     else if(strtoupper($ObjData->Request)=="GETACTIVITY")		{Activity::GetActivity($ObjData->Record);}
 		  
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 		 

@@ -4,27 +4,17 @@
 	 static function UpdateRecord()
 	 {
 		 $jsonSchema = '{   "Type": "object",
-							"Properties": { "Activity_Description": {"Type": "string", "Text": "letter"},
-                                            "Activity_Date": {"Type": "string"}
+							"Properties": { 
+											"activity_description": {"Type": "string", "Text": "letter"},
+                                            "start_date": {"Type": "string"},
+											"end_date": {"Type": "string"}
 		 								  },
-							 "Required": ["Activity_Description", "Activity_Date"]
+							 "Required": ["activity_description", "start_date", "end_date"]
 						}';
 						
 		return $jsonSchema;
     }
   //--------------------------------------------------------------------------------------------------------
-  
-  
-     static function SearchRecord()
-	 {   $jsonSchema = '{   "Type": "object",
-							"Properties": { "SearchKey": { "Type": "string" }
-							              },
-						    "Required": ["SearchKey"]
-						}';
-		 return $jsonSchema;
-	 }
-  //--------------------------------------------------------------------------------------------------------
-  
  }
 
 ?>

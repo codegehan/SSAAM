@@ -1,5 +1,4 @@
 <?php
-
  class UserAccount_Schema{
 	 static function Shakehand()
 	 {
@@ -13,8 +12,6 @@
 		return $jsonSchema;
     }
   //--------------------------------------------------------------------------------------------------------
-  
-  
      static function Login()
 	 {  $jsonSchema = '{   "Type": "object",
 							"Properties": { "student_id": { "Type": "string" },
@@ -26,7 +23,6 @@
 		 return $jsonSchema;
 	 }
   //--------------------------------------------------------------------------------------------------------
-  
 	static function Update()
 		{  $jsonSchema = '{   "Type": "object",
 								"Properties": { "student_id": {"Type": "string"},
@@ -39,5 +35,4 @@
 		}
 	//--------------------------------------------------------------------------------------------------------
  }
-
 ?>

@@ -7,9 +7,9 @@
 							          "Properties": { 
                           "student_id": {"Type": "string"},
                           "attachment_description": { "Type": "object",
-                                                      "Properties": { "file_type": {"Type": "string"},
-                                                                      "status": {"Type": "string"}
-                                                                    }, "Required": ["file_type", "status"]
+                                                      "Properties": { 
+                                                                      "file_type": {"Type": "string"}
+                                                                    }, "Required": ["file_type"]
                                                     },
                           "attachment_data": {"Type": "string"}
 		 								},

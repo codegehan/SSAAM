@@ -34,8 +34,19 @@
 						
 		return $jsonSchema;
     }
+  //--------------------------------------------------------------------------------------------------------
+	static function LoginStudent()
+	{
+		$jsonSchema = '{ "Type": "object",
+						 "Properties": {
+							"student_id": {"Type": "string"},
+							"password": {"Type": "string"}
+						 }, "Required": ["student_id", "password"]
 
-	
+		}';
+
+		return $jsonSchema;
+	}
   //--------------------------------------------------------------------------------------------------------
  }
 

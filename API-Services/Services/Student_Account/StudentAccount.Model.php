@@ -59,7 +59,6 @@
 				if(trim($Result) != "")
 				{
 					$Result = json_decode($Result);
-					$Result = $Result[0]->Status;
 					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
 											"Result" => $Result
 										), JSON_UNESCAPED_UNICODE);
@@ -72,7 +71,7 @@
 static function FetchRecord($Record)
 		  {   
 			set_error_handler(function ($errno,$errstr,$errfile,$errline){
-				throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+			throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
 				try{
 					$Procedure = "Call get_student()";
 					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $Record);
@@ -130,6 +129,35 @@ static function FetchRecord($Record)
 				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
 			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
 
+		}
+
+//=================================================================================================================================================================================================	
+		static function LoginStudent($Record)
+		{   
+			$Validate_JSON =  JSON::ValidateSchema(json_decode(json_encode($Record), true), json_decode(StudentAccount_Schema::LoginStudent(), true)); 
+			if($Validate_JSON["Valid"]===true){
+				set_error_handler(function ($errno,$errstr,$errfile,$errline){
+				throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+
+				try{
+					$studentidd = $Record->student_id;
+					$password = $Record->password;
+					$data = array(
+						"student_id" => $studentidd,
+						"password" => $password
+					);
+					$NewRecord = json_encode($data);
+					$Procedure = "Call login_student(?)";
+					$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+					if(trim($Result) != "")
+					{
+						$Result = json_decode($Result);
+						echo json_encode(Array("Status" => "Requested service has been successfully processed.",
+												"Result" => $Result
+											), JSON_UNESCAPED_UNICODE);
+					} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
+				} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  	
+			} else{echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';}
 		}
 	}
 ?>
