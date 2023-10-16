@@ -17,12 +17,18 @@
                 throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
                 
                 $studentid = $Record->student_id;
-                $attachmentDescription = $Record->attachment_description;
+                $fileType = $Record->attachment_description->file_type;
+                $status = $Record->attachment_description->status;
+                $dateSubmitted = date("Y-m-d H:i:s");
                 $file_data = $Record->attachment_data;
 
                 $data = array(
                     "student_id" => $studentid,
-                    "attachment_description" => $attachmentDescription
+                    "attachment_description" => array(
+                        "file_type" => $fileType,
+                        "date_submitted" => $dateSubmitted,
+                        "status" => $status
+                    )
                 );
 
                 try{

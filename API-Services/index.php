@@ -2,6 +2,7 @@
        require_once("Authorization.php");
        require_once("Libraries/Route.php");
 
+	   	
      
         $Data = file_get_contents('php://input'); 
          
@@ -19,8 +20,7 @@
 					if(strtoupper(Route::Info()["Module"])=="STUDENTACCOUNT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Student_Account/StudentAccount.Controller.php", 
 				                       Route::Info()["Method"], $Data);
-					 }
-					else if(strtoupper(Route::Info()["Module"])=="USERACCOUNT"){
+					 }else if(strtoupper(Route::Info()["Module"])=="USERACCOUNT"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/User_Account/UserAccount.Controller.php", 
 				                       Route::Info()["Method"], $Data);
 					}else if(strtoupper(Route::Info()["Module"])=="ACTIVITY"){
@@ -38,12 +38,12 @@
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header
-	              header("Expires: Sat, 13 Jan 1979 05:00:00 GMT");
-                  header("Cache-Control: no-cache");
-                  header("Pragma: no-cache");
-				  header("Developer: Coderstation Developers Team");
-                  header("Provider: Coderstation Services and Technology Provider");
-                  header("Authorization: Bearer {$Authorization['JWToken']}");
+				header("Expires: Sat, 13 Jan 1979 05:00:00 GMT");
+				header("Cache-Control: no-cache");
+				header("Pragma: no-cache");
+				header("Developer: Coderstation Developers Team");
+				header("Provider: Coderstation Services and Technology Provider");
+				header("Authorization: Bearer {$Authorization['JWToken']}");
 			   }else{ //Invalid Authorization
 			          echo $Authorization["Status"];	}			  
                       

@@ -15,6 +15,7 @@
 											"sex" : {"Type": "string"},
 											"program_enroll" : {"Type": "object",
 																"Properties": {
+																	"year_level": {"Type": "string"},
 																	"college": {"Type": "string"},
 																	"program": {"Type": "string"},
 																	"major": {"Type": "string"},

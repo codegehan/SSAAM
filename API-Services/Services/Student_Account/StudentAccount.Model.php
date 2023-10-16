@@ -4,10 +4,9 @@
 	require_once ("..\..\Libraries\Application.Config.php");
     require_once ("..\..\Libraries\PdoMysql.php");
 	require_once ("StudentAccount.Schema.php");
-	
+	// header('Access-Control-Allow-Origin: *');
 	class StudentAccount{
-//=================================================================================================================================================================================================	 
-		  
+//=================================================================================================================================================================================================	   
 		static function UpdateRecord($Record)
 		 {   
 			// Validate the JSON data against the schema
@@ -20,6 +19,7 @@
 			$lastname = $Record->fullname->lastname;
 			$suffix = $Record->fullname->suffix;
 			$sex = $Record->sex;
+			$yearLevel = $Record->program_enroll->year_level;
 			$course = $Record->program_enroll->college;
 			$program = $Record->program_enroll->program;
 			$major = $Record->program_enroll->major;
@@ -39,6 +39,7 @@
 				),
 				"sex" => $sex,
 				"program_enroll" => array (
+					"year_level" => $yearLevel,
 					"course" => $course,
 					"program" => $program,
 					"major" => $major,
@@ -107,6 +108,28 @@ static function FetchRecord($Record)
 			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
 
 		}
-}
-	
-	?>
+//=================================================================================================================================================================================================	
+		static function ValidateId($Record)
+		{   
+			set_error_handler(function ($errno,$errstr,$errfile,$errline){
+			throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+			try{
+				$studentidd = $Record->student_id;
+				$data = array(
+					"student_id" => $studentidd
+				);
+				$NewRecord = json_encode($data);
+				$Procedure = "Call validate_student(?)";
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
+				if(trim($Result) != "")
+				{
+					$Result = json_decode($Result);
+					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
+											"Result" => $Result
+										), JSON_UNESCAPED_UNICODE);
+				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
+			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
+
+		}
+	}
+?>

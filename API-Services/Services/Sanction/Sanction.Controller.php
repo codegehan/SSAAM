@@ -9,9 +9,8 @@
 	 
 	if(strtoupper($Method)=="POST")
 	   { 
-	     if(strtoupper($ObjData->Request)=="INSERT")		{Sanction::InsertRecord($ObjData->Record);}
-	     else if(strtoupper($ObjData->Request)=="UPDATE")		{Sanction::UpdateRecord($ObjData->Record);}
-	     else if(strtoupper($ObjData->Request)=="GETSANCTIONRECORD")		{Sanction::FetchRecord($ObjData->Record);}
+	     if(strtoupper($ObjData->Request)=="UPDATE")		{Sanction::UpdateRecord($ObjData->Record);}
+	     else if(strtoupper($ObjData->Request)=="GETSTUDENTSANCTION")		{Sanction::GetSanctionRecord($ObjData->Record);}
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);} 
 		 
 	   } else{ echo json_encode(Array("Status"=> "Error: POST method is required in the process."), JSON_UNESCAPED_UNICODE);}

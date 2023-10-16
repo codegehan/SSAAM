@@ -8,9 +8,8 @@
                           "student_id": {"Type": "string"},
                           "attachment_description": { "Type": "object",
                                                       "Properties": { "file_type": {"Type": "string"},
-                                                                      "date_submitted": {"Type": "string"},
                                                                       "status": {"Type": "string"}
-                                                                    }, "Required": ["file_type", "date_submitted", "status"]
+                                                                    }, "Required": ["file_type", "status"]
                                                     },
                           "attachment_data": {"Type": "string"}
 		 								},

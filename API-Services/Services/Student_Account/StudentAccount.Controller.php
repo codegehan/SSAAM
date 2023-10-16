@@ -13,6 +13,7 @@
 	     if(strtoupper($ObjData->Request)=="UPDATE")		{StudentAccount::UpdateRecord($ObjData->Record);}
 		 else if(strtoupper($ObjData->Request)=="FETCH")	{StudentAccount::FetchRecord($ObjData->Record);}
 		 else if(strtoupper($ObjData->Request)=="FETCHID")	{StudentAccount::FetchId($ObjData->Record);}
+		 else if(strtoupper($ObjData->Request)=="VALIDATESTUDENT")	{StudentAccount::ValidateId($ObjData->Record);}
 		  
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 		 

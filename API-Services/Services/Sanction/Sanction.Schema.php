@@ -7,9 +7,9 @@
                                             "sanction_no": {"Type": "integer"},
                                             "min_absences": {"Type": "integer"},
                                             "max_absences": {"Type": "integer"},
-                                            "sanction_info": {"Type": "string"}
+                                            "sanction_desc": {"Type": "string"}
                                         },
-                            "Required": ["min_absences", "max_absences", "sanction_info"]
+                            "Required": ["sanction_no","min_absences", "max_absences", "sanction_info"]
                         }';			
 		return $jsonSchema;
     }
