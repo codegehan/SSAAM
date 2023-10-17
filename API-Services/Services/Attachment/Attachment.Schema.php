@@ -24,9 +24,10 @@
                             "Properties": { 
                                             "attachment_no": {"Type": "integer"},
                                             "file_status": {"Type": "string"},
-                                            "date_validated": {"Type": "string"}
+                                            "date_validated": {"Type": "string"},
+                                            "validated_by": {"Type": "string"}
                                            },
-                            "Required": ["attachment_no", "file_Status", "date_validated"]
+                            "Required": ["attachment_no", "file_Status", "date_validated","validated_by"]
                         }';					
         return $jsonSchema;
     }

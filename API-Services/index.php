@@ -35,6 +35,9 @@
 					}else if(strtoupper(Route::Info()["Module"])=="COURSE"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Course/Course.Controller.php", 
 									Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="ATTENDANCE"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Attendance/Attendance.Controller.php", 
+									Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header
