@@ -1,8 +1,6 @@
 <?php 
        require_once("Authorization.php");
        require_once("Libraries/Route.php");
-	   header('Access-Control-Allow-Origin: *');
-	   header("Access-Control-Allow-Headers: Identity, API-Key, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
        $Data = file_get_contents('php://input'); 
         ob_start();
         $Request_Headers = apache_request_headers();
