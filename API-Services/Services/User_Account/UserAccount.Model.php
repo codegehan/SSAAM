@@ -19,18 +19,7 @@
 				$convertedCode = strval($code);
 				$status = "active";
 				$expiration = date('Y-m-d H:i:s', strtotime('+2 minutes'));
-
-				$recipient = "gehanatomost@gmail.com";
-				$subject = "OTP Code";
-				$message = Email::SendEmail($convertedCode);
-				// $message = "Your OTP Code is: " . $convertedCode;
-				$header = "From: resalutegehan@gmail.com\r\n";
-
-				$header.= "Reply To: " . $recipient . "\r\n";
-				$header.= "MIME-Version : 1.0\r\n";
-				$header.= "Content-Type: text/html; charset=ISO-8850-1\r\n";
-				mail($recipient,$subject,$message,$header);
-			
+				
 				$data = array(
 					"student_id" => $student_id,
 					"password" => $password,
@@ -50,7 +39,15 @@
 					if(trim($Result) != "")
 					{
 						$Result = json_decode($Result);
-						$Result = $Result[0]->Status;
+						$recipient = $Result[0]->Email;
+						$subject = "OTP Code";
+						$message = Email::SendEmail($convertedCode);
+						$header = "From: resalutegehan@gmail.com\r\n";
+
+						$header.= "Reply To: " . $recipient . "\r\n";
+						$header.= "MIME-Version : 1.0\r\n";
+						$header.= "Content-Type: text/html; charset=ISO-8850-1\r\n";
+						mail($recipient,$subject,$message,$header);
 						echo json_encode(Array("Status" => "Requested service has been successfully processed.",
 												"Result" => $Result
 											), JSON_UNESCAPED_UNICODE);
@@ -58,8 +55,7 @@
 				} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}
 			}else{echo '{ "JSON Schema Status" : "' .  $Validate_JSON["Status"] . '"}';}
 			
-		 }
-			  
+		 }		  
  //=================================================================================================================================================================================================	 
 		 static function Login($Record)
 		  {   
@@ -71,10 +67,6 @@
 				$studentid = $Record->student_id;
 				$password = $Record->password;
 				$otpcode = $Record->otp;
-
-				// $email = "gehanatomost@gmail.com";
-				// $mailer = new OTPMailer();
-				// $mailer->sendOTPviaEmail("gehanatomost@gmail.com", "12345");
 
 				$data = array(
 					"student_id" => $studentid,
@@ -100,7 +92,6 @@
 
 		  
 		  }
- 
 //=================================================================================================================================================================================================	 
 		static function Update($Record)
 		{   
