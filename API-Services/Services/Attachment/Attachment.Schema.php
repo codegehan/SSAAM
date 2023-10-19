@@ -31,6 +31,18 @@
                         }';					
         return $jsonSchema;
     }
+  //--------------------------------------------------------------------------------------------------------
+    static function FetchAttachmentData()
+    {
+        $jsonSchema = '{   "Type": "object",
+                            "Properties": { 
+                                            "student_id": {"Type": "string"},
+                                            "attachment_no": {"Type": "integer"}
+                                          },
+                            "Required": ["student_id", "integer"]
+                        }';					
+        return $jsonSchema;
+    }
  }
 
 ?>

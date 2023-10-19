@@ -15,6 +15,15 @@
 		return $jsonSchema;
     }
   //--------------------------------------------------------------------------------------------------------
+    static function GetStudentAttendance()
+    {
+      $jsonSchema = '{"Type": "object",
+              "Properties": {
+                "request": {"Type": "string"}
+              }, "Required": ["request"]
+            }';
+      return $jsonSchema;
+      }
  }
 
 ?>

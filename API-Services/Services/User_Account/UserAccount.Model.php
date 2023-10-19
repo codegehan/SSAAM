@@ -91,7 +91,6 @@
 					if(trim($Result) != "")
 					{
 						$Result = json_decode($Result);
-						$Result = $Result[0]->Status;
 						echo json_encode(Array("Status" => "Requested service has been successfully processed.",
 												"Result" => $Result
 											), JSON_UNESCAPED_UNICODE);
@@ -120,7 +119,7 @@
 				"account_privilege" => $accountPrivilege,
 				"otp" => null,
 				"last_login" => null,
-				"login_attempt" => null,
+				"login_attempt" => 0,
 				"login_cooldown" => null,
 				"created_date" => $createdDate
 			);

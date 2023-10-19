@@ -2,10 +2,9 @@
        require_once("Authorization.php");
        require_once("Libraries/Route.php");
 	   header('Access-Control-Allow-Origin: *');
-	   header("Access-Control-Allow-Headers: Identity, api-key, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
-     
-        $Data = file_get_contents('php://input'); 
-         
+	   header("Access-Control-Allow-Headers: Identity, API-Key, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
+       $Data = file_get_contents('php://input'); 
+        ob_start();
         $Request_Headers = apache_request_headers();
          
 		  
@@ -38,6 +37,9 @@
 					}else if(strtoupper(Route::Info()["Module"])=="ATTENDANCE"){
 						echo Route::Transmit(Route::Info()["URL"] . "/Services/Attendance/Attendance.Controller.php", 
 									Route::Info()["Method"], $Data);
+					}else if(strtoupper(Route::Info()["Module"])=="SCHEDULE"){
+						echo Route::Transmit(Route::Info()["URL"] . "/Services/Schedule/Schedule.Controller.php", 
+									Route::Info()["Method"], $Data);
 					}else{ echo '{"Status" : "Error=> The API endpoint was not recognized."}';}
 			   
 			   //Declare The Page Header
@@ -48,6 +50,7 @@
 				header("Provider: Coderstation Services and Technology Provider");
 				header("Authorization: Bearer {$Authorization['JWToken']}");
 			   }else{ //Invalid Authorization
-			          echo $Authorization["Status"];	}			  
+			          echo $Authorization["Status"];	}
+		ob_flush();			  
                       
 ?>
