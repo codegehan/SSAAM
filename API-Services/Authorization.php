@@ -3,7 +3,7 @@
 	 static function Validate($Header, $Service)
 	 {  $Header = json_decode(json_encode($Header), true);
 	    $Exempted_Services =["SHAKEHAND", "RESETPASSWORD"];
-	    $UserAgent = ["Coderstation", "CCS Creative", "PostmanRuntime/7.32.3"];
+	    // $UserAgent = ["Coderstation", "CCS Creative", "PostmanRuntime/7.32.3"];
 		//Dummy Security
 	    $JWToken = "Bearer eyJUWVAiOiJKV1QiLCJBTEciOiJIUzI1NiJ9.eyJSRUNPUkQiOiJleUpWYzJWeWMxOUJZMk52.STZJbEp2ZDJWdVlTQlRZV2QxYVc0aUxDSl";
 	    $API_Key ="JMCS8280C000HaS9448da4501hBaa62295b187HaS4a060cfd05hjM47fcc96a38HaS9448da45";

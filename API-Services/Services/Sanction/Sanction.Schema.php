@@ -4,12 +4,11 @@
 	 {
 		 $jsonSchema = '{   "Type": "object",
                             "Properties": { 
-                                            "sanction_no": {"Type": "integer"},
                                             "min_absences": {"Type": "integer"},
                                             "max_absences": {"Type": "integer"},
                                             "sanction_desc": {"Type": "string"}
                                         },
-                            "Required": ["sanction_no","min_absences", "max_absences", "sanction_info"]
+                            "Required": ["min_absences", "max_absences", "sanction_info"]
                         }';			
 		return $jsonSchema;
     }

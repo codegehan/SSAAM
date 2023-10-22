@@ -35,7 +35,22 @@ class Schedule
 		}
 	}
 	//=================================================================================================================================================================================================	 
-
+	static function FetchSchedule($Record)
+	{
+		set_error_handler(function ($errno,$errstr,$errfile,$errline){
+			throw new ErrorException($errstr,$errno,0,$errfile,$errline);});
+			try{
+				$Procedure = "Call schedule_heartbeat()";
+				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $Record);
+				if(trim($Result) != "")
+				{
+					$Result = json_decode($Result);
+					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
+											"Result" => $Result
+										), JSON_UNESCAPED_UNICODE);
+				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
+			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}
+	}
 	//=================================================================================================================================================================================================	 
 	
 }

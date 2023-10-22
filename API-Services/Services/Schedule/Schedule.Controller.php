@@ -11,6 +11,7 @@
 	if(strtoupper($Method)=="POST")
 	   { 
 	     if(strtoupper($ObjData->Request)=="UPDATE")		{Schedule::UpdateSchedule($ObjData->Record);}
+	     if(strtoupper($ObjData->Request)=="FETCHSCHEDULE")		{Schedule::FetchSchedule($ObjData->Record);}
 		 else{ echo json_encode(Array("Status"=> "Error: Service request is not valid."), JSON_UNESCAPED_UNICODE);}
 	   } else{ echo json_encode(Array("Status"=> "Error: POST method is required in the process."), JSON_UNESCAPED_UNICODE);}
  

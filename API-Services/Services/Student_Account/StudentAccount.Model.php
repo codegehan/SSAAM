@@ -95,13 +95,17 @@ static function FetchRecord($Record)
 					"student_id" => $studentidd
 				);
 				$NewRecord = json_encode($data);
-				$Procedure = "Call get_studentid(?)";
+				$Procedure = "Call get_student_info(?)";
 				$Result = PdoMysql::ExecuteDML_Query(Application::$DBase, $Procedure, $NewRecord);
 				if(trim($Result) != "")
 				{
 					$Result = json_decode($Result);
+					$Image = $Result[0]->profile_image;
+					$Fullname = $Result[0]->student_information->fullname;
+					$Image = str_replace("/", "_", $Image);
 					echo json_encode(Array("Status" => "Requested service has been successfully processed.",
-											"Result" => $Result
+											"Fullname" => $Fullname,
+											"Image" => $Image
 										), JSON_UNESCAPED_UNICODE);
 				} else { echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error"), JSON_UNESCAPED_UNICODE);}
 			} catch (ErrorException $e){ echo json_encode(Array("Status" => "Error: Request has failed.The server has encountered an error $e"), JSON_UNESCAPED_UNICODE);}	  
